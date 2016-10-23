@@ -15,14 +15,41 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Libraries of the test report.
+ * Libraries of the wordcloud report.
  *
- * @package    report_test
- * @copyright  2016 Jean-Philippe Gaudreau <jp.gaudreau@umontreal.ca>
+ * @package    report_wordcloud
+ * @copyright  2016 Nadav Kavalerchik <nadavkav@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
+
+/**
+ * This function extends the module navigation with the report items
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass $cm
+ */
+function report_wordcloud_extend_navigation_module($navigation, $cm) {
+    if (has_capability('report/wordcloud:view', context_course::instance($cm->course))) {
+        $url = new moodle_url('/report/wordcloud/index.php', array('courseid' => $cm->course, 'forumid' => $cm->instance));
+        $navigation->add(get_string('pluginname', 'report_wordcloud'), $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
+    }
+}
+
+/**
+ * This function extends the navigation with the report items
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass $course The course to object for the report
+ * @param stdClass $context The context of the course
+ */
+function report_wordcloud_extend_navigation_course($navigation, $course, $context) {
+    if (has_capability('report/wordcloud:view', $context)) {
+        $url = new moodle_url('/report/wordcloud/index.php', array('courseid'=>$course->id));
+        $navigation->add(get_string('pluginname', 'report_wordcloud'), $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
+    }
+}
 
 /**
  * This function extends the navigation with the report items
@@ -30,12 +57,12 @@ defined('MOODLE_INTERNAL') || die;
  * @param navigation_node $navigation The navigation node to extend
  * @param context $coursecategorycontext The context of the course category
  */
-function report_test_extend_navigation_category($navigation, $coursecategorycontext) {
-    if (!has_capability('report/test:view', $coursecategorycontext)) {
+function report_wordcloud_extend_navigation_category($navigation, $coursecategorycontext) {
+    if (!has_capability('report/wordcloud:view', $coursecategorycontext)) {
         return;
     }
-    $url = new moodle_url('/report/test/index.php', array('pagecontextid' => $coursecategorycontext->id));
-    $name = get_string('pluginname', 'report_test');
+    $url = new moodle_url('/report/wordcloud/index.php', array('pagecontextid' => $coursecategorycontext->id));
+    $name = get_string('pluginname', 'report_wordcloud');
     $settingsnode = navigation_node::create($name,
                                             $url,
                                             navigation_node::TYPE_SETTING,

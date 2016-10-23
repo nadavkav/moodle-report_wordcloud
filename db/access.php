@@ -17,15 +17,15 @@
 /**
  * Capabilities
  *
- * @package    report_test
- * @copyright  2016 Jean-Philippe Gaudreau <jp.gaudreau@umontreal.ca>
+ * @package    report_wordcloud
+ * @copyright  2016 Nadav Kavalerchik <nadavkav@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    'report/test:view' => array(
+    'report/wordcloud:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSECAT,
         'archetypes' => array(

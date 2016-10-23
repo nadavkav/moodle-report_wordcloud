@@ -15,11 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'report_test', language 'en'
+ * Strings for component 'report_wordcloud', language 'en'
  *
- * @package    report_test
- * @copyright  2016 Jean-Philippe Gaudreau <jp.gaudreau@umontreal.ca>
+ * @package    report_wordcloud
+ * @copyright  2016 Nadav Kavalerchik <nadavkav@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Test report';
+$string['pluginname'] = 'Wordcloud report';

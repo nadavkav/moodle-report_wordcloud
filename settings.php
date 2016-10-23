@@ -17,16 +17,16 @@
 /**
  * Settings and links
  *
- * @package    report_test
- * @copyright  2016 Jean-Philippe Gaudreau <jp.gaudreau@umontreal.ca>
+ * @package    report_wordcloud
+ * @copyright  2016 Nadav Kavalerchik <nadavkav@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
-$ADMIN->add('reports', new admin_externalpage('reporttest', get_string('pluginname', 'report_test'),
-        new moodle_url('/report/test/index.php', array('pagecontextid' => context_system::instance()->id)),
-        array('report/test:view')));
+$ADMIN->add('reports', new admin_externalpage('reportwordcloud', get_string('pluginname', 'report_wordcloud'),
+        new moodle_url('/report/wordcloud/index.php', array('pagecontextid' => context_system::instance()->id)),
+        array('report/wordcloud:view')));
 
 // no report settings
 $settings = null;

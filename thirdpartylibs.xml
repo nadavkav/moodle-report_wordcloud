@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>lib/wordcloud2js/wordcloud2.js</location>
+        <name>WordCloud2</name>
+        <version>1.0.5</version>
+        <license>MIT</license>
+        <licenseversion>1.0</licenseversion>
+    </library>
+</libraries>

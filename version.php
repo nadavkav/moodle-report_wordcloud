@@ -17,13 +17,13 @@
 /**
  * Plugin version info
  *
- * @package    report_test
- * @copyright  2016 Jean-Philippe Gaudreau <jp.gaudreau@umontreal.ca>
+ * @package    report_wordcloud
+ * @copyright  2016 Nadav Kavalerchik <nadavkav@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016083101; // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2016083102; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2016051900; // Requires this Moodle version.
-$plugin->component = 'report_test'; // Full name of the plugin (used for diagnostics).
+$plugin->component = 'report_wordcloud'; // Full name of the plugin (used for diagnostics).
