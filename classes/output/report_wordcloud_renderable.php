@@ -66,7 +66,7 @@ class report_wordcloud_renderable implements renderable {
 
     private function clean($string) {
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-        $string = preg_replace('/[^א-תA-Za-z\-]/', '', $string); // Removes special chars.
+        $string = preg_replace('/[^a-zA-Z0-9א-ת_ %\[\]\.\(\)%&\-]/s', '', $string); // Removes special chars.
 
         return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
     }
