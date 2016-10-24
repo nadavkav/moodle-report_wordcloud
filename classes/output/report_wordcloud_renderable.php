@@ -47,7 +47,7 @@ class report_wordcloud_renderable implements renderable {
      *
      * @param $forumid
      */
-    private function  read_forum_posts($forumid) {
+    private function read_forum_posts($forumid) {
         global $DB;
 
         $params['forumid'] = $forumid;
@@ -61,8 +61,15 @@ class report_wordcloud_renderable implements renderable {
         foreach ($results as $post) {
             $this->forumcontent .= $this->better_strip_tags($post->message);
         }
+        $this->forumcontent = $this->clean($this->forumcontent);
     }
 
+    private function clean($string) {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+        $string = preg_replace('/[^א-תA-Za-z\-]/', '', $string); // Removes special chars.
+
+        return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+    }
     /**
      * Returns an array of all the unique occurance and count of each word.
      *
@@ -70,7 +77,7 @@ class report_wordcloud_renderable implements renderable {
      */
     public function get_wordcount_array() {
         //$wordcount = array();
-        $wordcount_array = explode(' ', $this->forumcontent);
+        $wordcount_array = explode('-', $this->forumcontent);
         $wordcount = array_count_values($wordcount_array);
         return $wordcount;
     }

@@ -20,12 +20,16 @@ define(['jquery', 'core/log', 'report_wordcloud/wordcloud2'], function($, log) {
                     var wordcloud = $('#wordcloud_canvas');
                     WordCloud(document.getElementById('wordcloud_canvas'), {
                         list: wordlist,
-                        drawOutOfBound: false,
-                        minSize: 3,
-                        shape: 'square',
-                        weightFactor: 2
+                        gridSize: Math.round(16 * $('#wordcloud_canvas').width() / 800),
+                        weightFactor: function (size) {
+                            return Math.pow(size, 2.3) * $('#wordcloud_canvas').width() / 800;
+                        },
+                        fontFamily: 'Alef, serif',
+                        //minSize: 3,
+                        //shape: 'square',
+                        //rotateRatio: 0.5,
+                        //weightFactor: 2
                     });
-                    //WordCloud(wordcloud, { list: [['foo', 12], ['bar', 6]] } );
                 }
             });
             log.debug('Wordcloud2js AMD init finished');

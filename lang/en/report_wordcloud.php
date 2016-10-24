@@ -23,3 +23,6 @@
  */
 
 $string['pluginname'] = 'Wordcloud report';
+$string['minwc'] = 'Min word count';
+$string['maxwc'] = 'Max word count';
+$string['regenerate'] = 'Regenerate Wordcloud';

@@ -29,6 +29,8 @@ require_once(__DIR__ . '/../../config.php');
 
 $courseid = required_param('courseid', PARAM_INT);
 $forumid = required_param('forumid', PARAM_INT);
+$minwc = optional_param('minwc', 3, PARAM_INT);
+$maxwc = optional_param('maxwc', 10000, PARAM_INT);
 $context = context_course::instance($courseid);
 
 require_login();
@@ -46,8 +48,9 @@ $PAGE->set_pagelayout('admin');
 
 $renderable = new \report_wordcloud\output\report_wordcloud_renderable($forumid);
 $wordcount_array = $renderable->get_wordcount_array();
+ksort($wordcount_array);
 foreach ($wordcount_array as $key_word => $count) {
-    if ($count > 3) {
+    if ($count > $minwc and $count < $maxwc) {
         $wordcount_arrayofarrays[] = array($key_word , $count);
     }
 }
@@ -59,4 +62,5 @@ $PAGE->requires->js_call_amd('report_wordcloud/init', 'initialise', $params);
 echo $output->header();
 echo $output->heading($title);
 echo $output->render($renderable);
+echo $output->report_selector_form();
 echo $output->footer();

@@ -55,14 +55,35 @@ class renderer extends plugin_renderer_base {
      *
      */
     public function report_wordcloud_canvas() {
-        $renderable = $this->renderable;
+        //$renderable = $this->renderable;
 
-        //echo \html_writer::div('', 'wordcloudcanvas', array('id'=>'wordcloudid'));
-        //echo \html_writer::start_div('canvas-wrapper', array('style' => 'width:800px;height:600px;'));
         echo \html_writer::start_div('canvas-wrapper');
-            //echo \html_writer::start_tag('canvas', array('id'=>'wordcloud_canvas', 'style' => 'width:100%;height:100%;'));
-            echo \html_writer::start_tag('canvas', array('id'=>'wordcloud_canvas', 'width' => '800', 'height'=>'600'));
-            echo \html_writer::end_tag('canvas');
+            echo \html_writer::empty_tag('canvas', array('id'=>'wordcloud_canvas', 'width' => '800', 'height'=>'600'));
         echo \html_writer::end_div();
+    }
+
+    /**
+     * This function is used to generate and display wordcloud options form.
+     *
+     */
+    public function report_selector_form($params = array()) {
+        //$renderable = $this->renderable;
+
+        $courseid = required_param('courseid', PARAM_INT);
+        $forumid = required_param('forumid', PARAM_INT);
+        $minwc = optional_param('minwc', 3, PARAM_INT);
+        $maxwc = optional_param('maxwc', 10000, PARAM_INT);
+
+        echo \html_writer::start_tag('form', array('class' => 'form', 'action' => 'index.php', 'method' => 'get'));
+            echo \html_writer::label(get_string('minwc', 'report_wordcloud'), 'minwc', false);
+            echo \html_writer::empty_tag('input', array('name' => 'minwc', 'type'=>'text', 'value' => $minwc));
+            echo \html_writer::label(get_string('maxwc', 'report_wordcloud'), 'maxwc', false);
+            echo \html_writer::empty_tag('input', array('name' => 'maxwc', 'type'=>'text', 'value' => $maxwc));
+
+            echo \html_writer::empty_tag('input', array('name' => 'courseid', 'type'=>'hidden', 'value' => $courseid));
+            echo \html_writer::empty_tag('input', array('name' => 'forumid', 'type'=>'hidden', 'value' => $forumid));
+            echo \html_writer::empty_tag('br');
+            echo \html_writer::empty_tag('input', array('type' => 'submit', 'value' => get_string('regenerate', 'report_wordcloud')));
+        echo \html_writer::end_tag('form');
     }
 }
