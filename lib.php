@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die;
  * @param stdClass $cm
  */
 function report_wordcloud_extend_navigation_module($navigation, $cm) {
-    if (has_capability('report/wordcloud:view', context_course::instance($cm->course))) {
+    if ($cm->modname == 'forum' && has_capability('report/wordcloud:view', context_course::instance($cm->course))) {
         $url = new moodle_url('/report/wordcloud/index.php', array('courseid' => $cm->course, 'forumid' => $cm->instance));
         $navigation->add(get_string('pluginname', 'report_wordcloud'), $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
